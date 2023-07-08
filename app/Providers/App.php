@@ -17,6 +17,10 @@ class App extends Provider
      */
     public function register()
     {
+        if(config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
+
         if (config('app.installed') && config('app.debug')) {
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }
